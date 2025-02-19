@@ -20,7 +20,7 @@ type RequestedResource struct {
 }
 
 type MemoryStorage interface {
-    Get(key string) any
+    Get(key string) (any, bool)
     Set(key string, value any)
 }
 
