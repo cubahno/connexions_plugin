@@ -1,7 +1,7 @@
 package connexions_plugin
 
 import (
-    "net/http"
+	"net/http"
 )
 
 // RequestedResource represents the current request that is being processed.
@@ -12,16 +12,17 @@ import (
 // ServiceStorage is the thread-safe storage that is used to store and retrieve data for this service.
 // Auto-cleared by history storage timeout.
 type RequestedResource struct {
-    Resource       string
-    Body           []byte
-    Response       *HistoryResponse
-    Request        *http.Request
-    ServiceStorage MemoryStorage
+	Resource       string
+	Body           []byte
+	Response       *HistoryResponse
+	Request        *http.Request
+	ServiceStorage MemoryStorage
 }
 
 type MemoryStorage interface {
-    Get(key string) (any, bool)
-    Set(key string, value any)
+	Get(key string) (any, bool)
+	Set(key string, value any)
+	Data() map[string]any
 }
 
 // HistoryResponse represents the response that was generated or received from the server.
@@ -29,7 +30,7 @@ type MemoryStorage interface {
 // StatusCode is the HTTP status code returned
 // IsFromUpstream is true if the response was received from the upstream server
 type HistoryResponse struct {
-    Data           []byte
-    StatusCode     int
-    IsFromUpstream bool
+	Data           []byte
+	StatusCode     int
+	IsFromUpstream bool
 }
